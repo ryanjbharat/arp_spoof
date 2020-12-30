@@ -9,10 +9,8 @@ def get_arguments():
     parser.add_argument("-t", "--target", type=str, dest="target", help="Target IP of host on network.")
     parser.add_argument("-g", "--gateway", type=str, dest="gateway", help="Default gateway IP")
     args = parser.parse_args()
-    if not args.target:
-        parser.error("Please specify target address. Use --help for more info.")
-    if not args.gateway:
-        parser.error("Please specify a default gateway. Use --help for more info.")
+    if not (args.target and args.gateway):
+        parser.error("Please specify target address and gateway address. Use --help for more info.")
     return args
 
 def spoof(target_ip, spoof_ip):
